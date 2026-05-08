@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Django (runserver)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/manage.py",
+      "args": ["runserver", "127.0.0.1:8000", "--noreload"],
+      "django": true,
+      "console": "integratedTerminal",
+      "env": {
+        "DJANGO_SETTINGS_MODULE": "eld_route.settings"
+      }
+    },
+    {
+      "name": "Attach (debugpy)",
+      "type": "python",
+      "request": "attach",
+      "connect": { "host": "localhost", "port": 5678 }
+    }
+  ]
+}

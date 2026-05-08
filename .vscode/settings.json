@@ -1,0 +1,6 @@
+{
+    "python.defaultInterpreterPath": "/Users/abdullahshahbaz/Desktop/eld-route-app/backend/.venv/bin/python",
+    "python.analysis.extraPaths": [
+        "./backend"
+    ]
+}
