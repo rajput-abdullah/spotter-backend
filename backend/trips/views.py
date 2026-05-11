@@ -103,7 +103,11 @@ class PlanTripView(APIView):
 class PlanLogsPdfView(APIView):
     def get(self, request, uuid):
         plan = get_object_or_404(Plan, uuid=uuid)
-        pdf_bytes = generate_logs_pdf(plan.plan_data or {})
+        # Merge original request fields (total_distance_miles, pickup_location,
+        # dropoff_location, current_cycle_used_hrs …) with the planner output
+        # (route_instructions, eld_logs) so the PDF generator has everything it needs.
+        pdf_data = {**(plan.input_data or {}), **(plan.plan_data or {})}
+        pdf_bytes = generate_logs_pdf(pdf_data)
         resp = HttpResponse(pdf_bytes, content_type="application/pdf")
         resp["Content-Disposition"] = f'inline; filename="logs-{uuid}.pdf"'
         return resp
